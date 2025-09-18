@@ -3,7 +3,6 @@ import { Layout, Menu, ConfigProvider, Button, Avatar } from "antd";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { useAppSelector } from "../../../store/hooks";
 import {
-  Home,
   CarTaxiFront as Taxi,
   Clock,
   CreditCard,
@@ -17,8 +16,10 @@ import {
   ClipboardList,
   UserCog,
   Building2,
+  LogOut,
 } from "lucide-react";
 import { antTheme } from "../../../theme/theme";
+import { Header } from "antd/es/layout/layout";
 
 const { Content, Sider, Footer } = Layout;
 
@@ -35,7 +36,6 @@ const AppLayout: React.FC = () => {
     switch (user.role) {
       case "customer":
         menuItems.push(
-          { key: "/customer", icon: <Home size={18} />, label: "Home" },
           { key: "/book", icon: <Taxi size={18} />, label: "Book a Ride" },
           {
             key: "/plan-trip",
@@ -53,7 +53,6 @@ const AppLayout: React.FC = () => {
 
       case "driver":
         menuItems.push(
-          { key: "/driver", icon: <Home size={18} />, label: "Home" },
           {
             key: "/driver/dashboard",
             icon: <BarChart3 size={18} />,
@@ -70,7 +69,6 @@ const AppLayout: React.FC = () => {
 
       case "owner":
         menuItems.push(
-          { key: "/owner", icon: <Home size={18} />, label: "Home" },
           {
             key: "/owner/dashboard",
             icon: <BarChart3 size={18} />,
@@ -101,7 +99,6 @@ const AppLayout: React.FC = () => {
 
       case "admin":
         menuItems.push(
-          { key: "/admin", icon: <Home size={18} />, label: "Home" },
           {
             key: "/admin/dashboard",
             icon: <BarChart3 size={18} />,
@@ -147,7 +144,7 @@ const AppLayout: React.FC = () => {
             collapsible
             collapsed={collapsed}
             onCollapse={setCollapsed}
-            className="bg-white border-r shadow-sm"
+            className="bg-white border-r shadow-sm fixed h-screen top-0 left-0  "
             width={260}
           >
             <div className="p-4 flex items-center">
@@ -207,8 +204,18 @@ const AppLayout: React.FC = () => {
         )}
 
         <Layout>
-          <Content className="p-6 bg-neutral-50">
-            <div className="max-w-screen-2xl mx-auto">
+          <Content
+            className={` bg-neutral-50 min-h-screen transition-all ${
+              user ? (collapsed ? "ml-[80px]" : "ml-[260px]") : ""
+            }`}
+          >
+            <Header className=" bg-neutral-100 " style={{ display: "flex", alignItems: "center" ,justifyContent:"right" }}>
+              <Link to='/signup' className="space-x-2 self-end flex items-center cursor-pointer duration-300 hover:text-red-400">
+                <h1>Logout</h1>
+                <LogOut className="text-xl" />
+              </Link>
+            </Header>
+            <div className="max-w-screen-2xl mx-auto p-6">
               <Outlet />
             </div>
           </Content>

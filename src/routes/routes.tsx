@@ -7,6 +7,7 @@ import LazyRoute from "./LazyRoute";
 // Lazy load all components
 const Login = lazy(() => import("../pages/auth/Login"));
 const Landing = lazy(() => import("../pages/Landing"));
+const NotFound = lazy(() => import("../pages/NotFound"));
 const CustomerHome = lazy(() => import("../pages/customer/CustomerHome"));
 const BookingPage = lazy(() => import("../pages/customer/BookingPage"));
 const TripPlanPage = lazy(() => import("../pages/customer/TripPlanPage"));
@@ -106,4 +107,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
+    {
+        path: "*",
+        element: <LazyRoute component={NotFound} />,
+    },
 ]);

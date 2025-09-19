@@ -206,11 +206,21 @@ const AppLayout: React.FC = () => {
         <Layout>
           <Content
             className={` bg-neutral-50 min-h-screen transition-all ${
-              user ? (collapsed ? "ml-[80px]" : "ml-[260px]") : ""
+              collapsed ? "ml-[80px]" : "ml-[260px]"
             }`}
           >
-            <Header className=" bg-neutral-100 " style={{ display: "flex", alignItems: "center" ,justifyContent:"right" }}>
-              <Link to='/signup' className="space-x-2 self-end flex items-center cursor-pointer duration-300 hover:text-red-400">
+            <Header
+              className=" bg-neutral-100 "
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "right",
+              }}
+            >
+              <Link
+                to="/signup"
+                className="space-x-2 self-end flex items-center cursor-pointer duration-300 hover:text-red-400"
+              >
                 <h1>Logout</h1>
                 <LogOut className="text-xl" />
               </Link>

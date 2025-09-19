@@ -32,11 +32,11 @@ const AdminDashboard = lazy(() => import("../components/admin/AdminDashboard"));
 export const router = createBrowserRouter([
   {
     path: "/login",
-    element: <Login />,
+    element: <LazyRoute component={Login} />,
   },
   {
     path: "/signup",
-    element: <Login />,
+    element: <LazyRoute component={Login} />,
   },
   {
     element: <AppLayout />,
